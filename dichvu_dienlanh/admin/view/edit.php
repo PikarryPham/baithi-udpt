@@ -22,24 +22,24 @@
             </div>
             <div id="drop-menu">
                 <div class="menu-item active">
-                    <a href="./DashboardAdmin.html"> Dashboard </a>
+                    <a href="#"> Dashboard </a>
                 </div>
             </div>
             <div id="drop-menu">
                 <div class="menu-item">
-                    <a href="./orders-management-admin.html"> Orders Management </a>
+                    <a href="/admin/?c=dashboard&a=list"> Danh sách đặt hàng và trạng thái </a>
+                </div>
+            </div>
+            <!-- <div id="drop-menu">
+                <div class="menu-item">
+                    <a href="#"> Status Management </a>
                 </div>
             </div>
             <div id="drop-menu">
                 <div class="menu-item">
-                    <a href=""> Status Management </a>
+                    <a href="#"> Setting Management </a>
                 </div>
-            </div>
-            <div id="drop-menu">
-                <div class="menu-item">
-                    <a href=""> Setting Management </a>
-                </div>
-            </div>
+            </div> -->
 
         </div>
         <div id="admin-content">
@@ -109,6 +109,9 @@
                         </div>
 
                         <div class="submit-btn">
+                            <div class="update-status">
+                                <a href="/admin/?c=dashboard&a=list">Hủy</a>
+                            </div>
                             <div class="update-status">
                                 Update
                             </div>

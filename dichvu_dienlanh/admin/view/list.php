@@ -24,16 +24,16 @@
                 </div>
 
                 <div class="menu-item active">
-                    <a href="/admin/?c=dashboard&a=list"> Danh sách đặt hàng </a>
+                    <a href="/admin/?c=dashboard&a=list"> Danh sách đặt hàng và trạng thái </a>
                 </div>
 
-                <div class="menu-item">
+                <!-- <div class="menu-item">
                     <a href=""> Danh sách trạng thái </a>
                 </div>
 
                 <div class="menu-item">
                     <a href=""> Cài đặt </a>
-                </div>
+                </div> -->
 
                 <div class="menu-item">
                     <a href=""> Đăng xuất </a>
