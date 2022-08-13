@@ -1,0 +1,31 @@
+.ripple-button{
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.ripple-button img{
+    pointer-events: none;
+}
+
+span[class=ripple-background]{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    animation: ripple 0.5s linear infinite;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999999;
+}
+
+@keyframes ripple {
+    0%{
+        width: 0px;
+        height: 0px;
+        opacity: 0.5;
+    }
+    100%{
+        width: 2000px;
+        height: 200px;
+        opacity: 0;
+    }
+}
