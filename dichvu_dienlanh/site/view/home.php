@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./site/public/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./site/public/css/alert.css" />
     <link rel="stylesheet" href="./site/public/css/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -24,14 +25,15 @@
         </div>
         <div class="header-menu">
             <div class="menu-item"><a href="/">Trang chủ</a></div>
-            <div class="menu-item"><a href="#">Dịch vụ</a></div>
+            <div class="menu-item"><a href="/?c=order&a=add">Dịch vụ</a></div>
             <div class="menu-item"><a href="/?c=order&a=edit">Chi tiết đơn hàng</a></div>
-            <div class="menu-item"><a href="#">Liên hệ</a></div>
-            <div class="menu-item"><a href="#">Đăng nhập</a></div>
+            <div class="menu-item"><a href="">Liên hệ</a></div>
+            <div class="menu-item"><a href="">Đăng nhập</a></div>
         </div>
     </div>
     <div class="main-cotainer">
         <div class="button-option-container">
+            <?php require './site/layout/header.php';  ?>
 
             <div class="ripple-button button-option">
                 <form action="/?c=order&a=edit" method="GET">
@@ -49,7 +51,7 @@
             </div>
 
             <div class="button-option">
-                <button> Đăng nhập </button>
+                <button><a href="/admin/?c=login&a=login"> Đăng nhập </button>
             </div>
 
             <div class="button-option">

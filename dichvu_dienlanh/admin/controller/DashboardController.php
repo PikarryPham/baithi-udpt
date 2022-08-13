@@ -174,38 +174,35 @@ class DashboardController
 			$a["MaDangKy"] = $order->MaDangKy;
 			$as[] = $a;
 		}
-		echo json_encode($as);
-		// var_dump($orders);
 
 		$totalOrders = $orderRepository->getBy($conds, $sorts);
-		// echo json_encode($totalOrders);
+
+		// echo json_encode(count($totalOrders));
 
 
 		$pageNumber = ceil(count($totalOrders) / $item_per_page);
 		// echo json_encode($pageNumber);
 		// Var_dump($pageNumber);
 
+
+		$aray_json = [];
+		$aray_json = [
+			'orders' => $as,
+			'total_order' => count($totalOrders),
+			'total_page' => $pageNumber
+		];
+		// $aray_json['orders'] = $as;
+		// $aray_json['total_order'] = $totalOrders;
+		// $aray_json['total_page'] = $pageNumber;
+
+		// echo json_encode($aray_json);
+		echo json_encode($as);
+		// var_dump($aray_json);
+
+
 		// include "view/list.php";
 	}
 
-
-	// function convertToArray()
-	// {
-	// 	$a = array();
-	// 	$a["MaDH"] = $this->MaDH;
-	// 	$a["TenKH"] = $this->TenKH;
-	// 	$a["DienThoai"] = $this->DienThoai;
-	// 	$a["DiaChi"] = $this->DiaChi;
-	// 	$a["ThoiGianBD"] = $this->ThoiGianBD;
-	// 	$a["TrangThai"] = $this->TrangThai;
-	// 	$a["ThoiGianKT"] = $this->ThoiGianKT;
-	// 	$a["MaDV"] = $this->MaDV;
-	// 	$a["SoLuong"] = $this->SoLuong;
-	// 	$a["ThanhTien"] = $this->ThanhTien;
-	// 	$a["GhiChu"] = $this->GhiChu;
-	// 	$a["MaDangKy"] = $this->MaDangKy;
-	// 	return $a;
-	// }
 
 	function edit()
 	{
@@ -213,13 +210,20 @@ class DashboardController
 
 		$MaDH = $_GET['MaDH'] ?? null;
 		if ($MaDH) {
-			$order = $orderRepository->find($MaDH);
-		} else {
-			$orders = $orderRepository->getAll();
+			$orders = $orderRepository->find($MaDH);
 		}
+		$order = current($orders);
+		// var_dump($order);
 
+
+		// echo ($order->MaDV);
+
+		// else {
+		// 	$orders = $orderRepository->getAll();
+		// }
 		$serviceRepository = new ServiceRepository;
-		$services = $serviceRepository->find($order->MaDV);
+		$service = $serviceRepository->find($order->MaDV);
+
 		// var_dump($order);
 		include "view/edit.php";
 	}
@@ -237,12 +241,38 @@ class DashboardController
 		// $price_of_unit = $_POST['price_of_unit'];
 		// $GhiChu = $_POST['GhiChu'];
 		// $ThanhTien = $_POST['ThanhTien'];
-		// $ThoiGianBD = date("Y-m-d H:m:s");
+		// $ThoiGianKT = date("Y-m-d H:m:s");
 
 		$orderRepository = new OrderRepository();
-		$order = $orderRepository->find($MaDH);
+		$orders = $orderRepository->find($MaDH);
+		$order = current($orders);
 
 		$order->TrangThai = $TrangThai;
+		if ($TrangThai == 'HOANTAT') {
+			$order->ThoiGianKT = date("Y-m-d H:m:s");
+		} else {
+			$order->ThoiGianKT = null;
+		}
+		if ($TrangThai == 'HUY') {
+			$orderRepository = new OrderRepository();
+			$orders = $orderRepository->find($MaDH);
+			$order = current($orders);
+
+			$TrangThai = $order->TrangThai;
+
+			if ($orderRepository->destroy($MaDH)) {
+				$_SESSION['success'] = 'Bạn đã hủy đơn hàng thành công';
+
+				header('location:/admin/?c=dashboard&a=list');
+				// return true;
+			} else {
+				$_SESSION['error'] = 'Bạn không thể hủy đơn hàng !';
+				header('location:/admin/?c=dashboard&a=list');
+				// return false;
+			}
+		}
+		// $ThoiGianKT = date("Y-m-d H:m:s");
+
 		// $order->TenKH = $TenKH;
 		// $order->DienThoai = $DienThoai;
 		// $order->DiaChi = $DiaChi;
@@ -252,12 +282,16 @@ class DashboardController
 		// $order->ThanhTien = $ThanhTien;
 
 		if ($orderRepository->update_status($order)) {
-			header("location:/admin/");
+			$_SESSION['success'] = 'Bạn đã cập nhật trạng thái thành công';
+			// echo ($_SESSION['success']);
 
 			// return true;
 		} else {
 			// return false;
+			$_SESSION['error'] = 'Cập nhật trạng thái thất bại';
 		}
+		header("location:/admin/?c=dashboard&a=list");
+
 		// header('location:/?c=order&a=edit');
 	}
 

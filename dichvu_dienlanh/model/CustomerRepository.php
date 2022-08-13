@@ -57,4 +57,23 @@ class CustomerRepository
             return false;
         }
     }
+    function findUsernameAndPassword($TenTK, $MatKhau)
+    {
+        global $conn;
+        $sql = "SELECT * FROM taikhoan WHERE TenTK='$TenTK' AND MatKhau='$MatKhau'";
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $TenTK = $row["TenTK"];
+                $MatKhau = $row["MatKhau"];
+                $LoaiTK = $row["LoaiTK"];
+                $TinhTrang = $row["TinhTrang"];
+                $customer = new Customer($TenTK, $MatKhau, $LoaiTK, $TinhTrang);
+            }
+            return $customer;
+        } else {
+            return false;
+        }
+    }
 }

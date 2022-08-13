@@ -20,12 +20,19 @@
             <div class="login-header">
                 Login
             </div>
+
             <form action="/admin/?c=login&a=checkLogin" method="POST" id="form-login">
                 <div class="form-group">
                     <div class="bg-danger text-warning text-center">
 
                     </div>
                 </div>
+
+                <?php
+                session_id() || session_start();
+                echo !empty($_SESSION["error"]) ? $_SESSION["error"] : "";
+                unset($_SESSION["error"]);
+                ?>
                 <div class="form-control">
                     <label for="">Tên tài khoản</label>
                     <input type="text" placeholder="Type your phone number" name="TenTK">

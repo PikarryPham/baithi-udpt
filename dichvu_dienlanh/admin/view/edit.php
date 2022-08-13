@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../admin/public/css/order-detail-admin.css">
+    <link rel="stylesheet" href="../../admin/public/css/alert.css">
+
     <title>Orders Details </title>
 </head>
 
@@ -30,6 +32,7 @@
                     <a href="/admin/?c=dashboard&a=list"> Danh sách đặt hàng và trạng thái </a>
                 </div>
             </div>
+
             <!-- <div id="drop-menu">
                 <div class="menu-item">
                     <a href="#"> Status Management </a>
@@ -46,6 +49,9 @@
             <div class="admin-content-header">
                 Order Detail
             </div>
+
+            <?php require '../admin/layout/header.php'; ?>
+
             <div class="admin-content-body order-management">
                 <form action="/admin/?c=dashboard&a=update" method="POST" id="order-detail-form">
                     <input type="hidden" value="<?= $order->MaDH ?>" name="MaDH">
@@ -93,7 +99,7 @@
                         </div>
                         <div class="form-control">
                             <label for="">Service Name</label>
-                            <input type="text" name="" value="<?= $services->TenDV ?>" readonly>
+                            <input type="text" name="" value="<?= $service->TenDV ?>" readonly>
                             <small></small>
                         </div>
                         <div class="form-control">
@@ -104,13 +110,13 @@
 
                         <div class="form-control">
                             <label for="">Total Price</label>
-                            <input type="text" value="<?= $order->ThanhTien ?> vnd" readonly>
+                            <input type="text" value="<?= number_format($order->ThanhTien) ?> ₫" readonly>
                             <small></small>
                         </div>
 
                         <div class="submit-btn">
-                            <div class="update-status">
-                                <a href="/admin/?c=dashboard&a=list">Hủy</a>
+                            <div class="update-status-huy">
+                                <a href="/admin/">Hủy</a>
                             </div>
                             <div class="update-status">
                                 Update

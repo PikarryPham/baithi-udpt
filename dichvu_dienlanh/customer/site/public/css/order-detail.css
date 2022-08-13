@@ -1,0 +1,96 @@
+@import url("./header.css");
+@import url("./table.css");
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: rgb(54, 43, 232);
+  background: linear-gradient(
+    60deg,
+    rgba(54, 43, 232, 1) 0%,
+    rgba(129, 129, 212, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+#main-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#main-content .search-container{
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 20px;
+  width: 400px;
+}
+
+#main-content .search-container input[name=MaDH]{
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  color: white
+}
+
+#main-content .search-container input[name=order_code]::placeholder {
+  color: rgb(219, 218, 218);
+  opacity: 1;
+}
+
+#main-content .search-container .search-icon{
+  display: flex;
+  padding: 5px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  transition: all .4s ease;
+  margin-left: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#main-content .search-container .search-icon:hover{
+  transform: rotate(360deg) scale(1.05);
+}
+
+#main-content .orders-container{
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  width: 80%;
+  height: 60%;
+  overflow-y: scroll;
+}
+
+#main-content .table-header-container{
+  position: relative;
+  margin-top: 30px;
+  background-color: black;
+  backdrop-filter: blur(10px);
+  width: 80%;
+}
+
+#main-content .orders-container .tbl-header{
+}
+
+/* #main-content .orders-container .tbl-content{
+  margin-top: 48px;
+} */
+
+.orders-container::-webkit-scrollbar {
+  width: 0px;
+}

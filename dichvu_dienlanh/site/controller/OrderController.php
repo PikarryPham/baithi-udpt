@@ -39,7 +39,7 @@ class OrderController
         $MaDH = $orderRepository->save($data);
         if ($MaDH) {
             // echo ('Thành công');
-            $_SESSION['sussess'] = 'Bạn đã tạo thành công đơn hàng!';
+            $_SESSION['success'] = "Bạn đã tạo thành công đơn hàng! Mã đăng đơn hàng của bạn là: $MaDH";
             // echo ($MaDH);
             header("location:/?c=order&a=edit&MaDH=$MaDH");
         } else {
@@ -65,7 +65,8 @@ class OrderController
 
         $MaDH = $_GET['MaDH'] ?? null;
         if ($MaDH) {
-            $order = $orderRepository->find($MaDH);
+            $cond = "MaDH = '$MaDH'";
+            $order = $orderRepository->getByCond($cond);
             $serviceRepository = new ServiceRepository;
             $services = $serviceRepository->find($order->MaDV);
         } else {
@@ -100,9 +101,11 @@ class OrderController
         $order->ThanhTien = $ThanhTien;
 
         if ($orderRepository->update($order)) {
-            return true;
+            $_SESSION['success'] = 'Bạn đã update thành công đơn hàng!';
+            // return true;
         } else {
-            return false;
+            $_SESSION['error'] = 'Bạn đã update đơn hàng không thành công!';
+            // return false;
         }
         // header('location:/?c=order&a=edit');
 
@@ -112,15 +115,32 @@ class OrderController
     {
         if (isset($_GET['MaDH'])) {
             $MaDH = $_GET['MaDH'];
-            $orderRepository = new OrderRepository();
-            if ($orderRepository->destroy($MaDH)) {
-                header('location:/?c=order&a=edit');
-                return true;
-            } else {
-                header('location:/?c=order&a=edit');
 
-                return false;
+
+            $orderRepository = new OrderRepository();
+            $orders = $orderRepository->find($MaDH);
+            $order = current($orders);
+
+            $TrangThai = $order->TrangThai;
+            if ($TrangThai == 'DAKHOITAO') {
+                if ($orderRepository->destroy($MaDH)) {
+                    $_SESSION['success'] = 'Bạn đã hủy đơn hàng thành công';
+
+                    header('location:/?c=order&a=edit');
+                    // return true;
+                } else {
+                    header('location:/?c=order&a=edit');
+
+                    // return false;
+                }
+            } else {
+                $_SESSION['error'] = 'Bạn không thể hủy đơn hàng trong quá trình thực hiện';
+                header('location:/?c=order&a=edit');
+                // return false;
             }
+
+            // $orderRepository = new OrderRepository();
+
         }
 
         // include '/?c=order';

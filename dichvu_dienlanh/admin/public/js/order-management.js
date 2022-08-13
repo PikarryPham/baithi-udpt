@@ -106,7 +106,7 @@ function createRowElement(data) {
             <td>${item.ThoiGianKT}</td>
             <td>${item.TrangThai}</td>
             <td>${item.SoLuong}</td>
-            <td>${item.ThanhTien}vnđ</td>
+            <td>${item.ThanhTien} vnđ</td>
             <td>
               <div class="button-container">
                 <div class="button-options">
@@ -114,11 +114,7 @@ function createRowElement(data) {
                       <img src="../../admin/public/assest/icons/edit.png" alt="" />
                     </a>
                 </div>
-                <div class="button-options">
-                    <a href="./order-detail-admin.html">
-                      <img src="../../admin/public/assest/icons/trash-bin.png" alt="" />
-                    </a>
-                </div>
+                
               </div>
             </td>
           </tr>

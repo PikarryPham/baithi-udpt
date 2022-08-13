@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../admin/public/css/orders-management-admin.css" />
+    <link rel="stylesheet" href="../../admin/public/css/alert.css">
+
     <title>Orders Management</title>
 </head>
 
@@ -24,24 +26,27 @@
                 </div>
 
                 <div class="menu-item active">
-                    <a href="/admin/?c=dashboard&a=list"> Danh sách đặt hàng và trạng thái </a>
+                    <a href="/admin/"> Danh sách đặt hàng và trạng thái</a>
                 </div>
-
-                <!-- <div class="menu-item">
-                    <a href=""> Danh sách trạng thái </a>
+                <!-- 
+                <div class="menu-item">
+                    <a href="#"> Danh sách trạng thái </a>
                 </div>
 
                 <div class="menu-item">
-                    <a href=""> Cài đặt </a>
+                    <a href="#"> Cài đặt </a>
                 </div> -->
 
                 <div class="menu-item">
-                    <a href=""> Đăng xuất </a>
+                    <a href="/admin/?c=login&a=logout"> Đăng xuất </a>
                 </div>
             </div>
         </div>
         <div id="admin-content">
             <div class="admin-content-header">Danh sách đặt hàng</div>
+            <?php require '../admin/layout/header.php'; ?>
+
+
             <div class="admin-content-body dashboard">
                 <div class="text-filter">Bộ lọc</div>
 
@@ -79,7 +84,6 @@
                         </div>
                     </div>
                 </form>
-
                 <div id="table-container">
                     <div class="tbl-header">
                         <table cellpadding="0" cellspacing="0">
