@@ -26,4 +26,4 @@
 127.0.0.1 kubernetes.docker.internal
 # End of section
 
-127.0.0.1 dichvu_dienlanh.com
+127.0.0.1 dichvu_pizza.com
