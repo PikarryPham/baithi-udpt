@@ -38,7 +38,8 @@ option {
   font-size: 20px;
 }
 
-.update-status {
+.update-status, 
+.update-status-huy{
   margin-top: 20px;
   width: 90px;
   height: 35px;
@@ -62,5 +63,8 @@ option {
 }
 
 .update-status:hover {
+  transform: scale(1.05);
+}
+.update-status-huy:hover {
   transform: scale(1.05);
 }

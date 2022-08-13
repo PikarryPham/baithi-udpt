@@ -28,7 +28,7 @@ class ServiceRepository
 
     function find($MaDV)
     {
-        $cond = "MaDV=$MaDV";
+        $cond = "MaDV='$MaDV'";
         $service = $this->fetch($cond);
         // current() la ham tra ve phan tu dau tien trong danh sach
         $service = current($service);

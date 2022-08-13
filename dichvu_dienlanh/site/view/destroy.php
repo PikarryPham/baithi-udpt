@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="./site/public/vendor/bootstrap-4.5.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./site/public/vendor/fontawesome-free-5.15.1-web/css/all.min.css">
     <link rel="stylesheet" href="./site/public/css/style.css">
+    <link rel="stylesheet" href="./site/public/css/alert.css" />
+
 </head>
 
 <body>
     <div class="container" style="margin-top:20px;">
+        <?php require './site/layout/header.php';  ?>
+
 
         <a href="./site/subject/list.html" class=" btn btn-info">add</a>
         <a href="./site/register/list.html" class="active btn btn-info">Register</a>

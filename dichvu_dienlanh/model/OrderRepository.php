@@ -75,12 +75,12 @@ class OrderRepository
     function find($MaDH = null)
     {
         $cond = "MaDH=$MaDH";
-        $Orders = $this->fetch($cond);
+        return $this->fetch($cond);
         // current() la ham tra ve phan tu dau tien trong danh sach
-        if (count($Orders)) {
-            $Order = current($Orders);
-            return $Order;
-        }
+        // if (count($Orders)) {
+        //     $Order = current($Orders);
+        //     return $Order;
+        // }
     }
 
     function getAll()
@@ -100,11 +100,9 @@ class OrderRepository
         // $cond = "$cond[0]" . "$cond[0]['type']" . "$cond[0]['val']";
         $Orders = $this->fetch($cond);
         // current() la ham tra ve phan tu dau tien trong danh sach
-        // $Order = current($Orders);
-        return $Orders;
+        $Order = current($Orders);
+        return $Order;
     }
-
-
 
     function update($order)
     {
@@ -130,12 +128,12 @@ class OrderRepository
     function update_status($order)
     {
         global $conn;
-
         $MaDH = $order->MaDH;
         $TrangThai = $order->TrangThai;
+        $ThoiGianKT = $order->ThoiGianKT;
 
 
-        $sql = "UPDATE donhang SET TrangThai = '$TrangThai' WHERE MaDH = '$MaDH'";
+        $sql = "UPDATE donhang SET TrangThai = '$TrangThai', ThoiGianKT = ' $ThoiGianKT' WHERE MaDH = '$MaDH'";
         if ($conn->query($sql)) {
             return true;
         }
@@ -201,7 +199,6 @@ class OrderRepository
                     $row["TrangThai"],
                     $row["ThoiGianKT"],
                     $row["MaDV"],
-                    $row["MaDV"],
                     $row["SoLuong"],
                     $row["ThanhTien"],
                     $row["GhiChu"],
@@ -260,8 +257,6 @@ class OrderRepository
             $start = $page_index * $qty_per_page;
             $limit = "LIMIT $start, $qty_per_page";
         }
-
-
         return $this->fetchAll($condition, $sort, $limit);
     }
 }

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./site/public/css/order-detail.css" />
+    <link rel="stylesheet" href="./site/public/css/alert.css" />
     <title>Check Out Service</title>
 </head>
 
@@ -15,11 +16,11 @@
             <span>logo</span>
         </div>
         <div class="header-menu">
-            <div class="menu-item"><a href="#">Trang chủ</a></div>
-            <div class="menu-item"><a href="#">Dịch vụ</a></div>
-            <div class="menu-item"><a href="#">Chi tiết đơn hàng</a></div>
-            <div class="menu-item"><a href="#">Liên hệ</a></div>
-            <div class="menu-item"><a href="#">Đăng nhập</a></div>
+            <div class="menu-item"><a href="/">Trang chủ</a></div>
+            <div class="menu-item"><a href="/?c=order&a=add">Dịch vụ</a></div>
+            <div class="menu-item"><a href="/?c=order&a=edit">Chi tiết đơn hàng</a></div>
+            <div class="menu-item"><a href="">Liên hệ</a></div>
+            <div class="menu-item"><a href="">Đăng nhập</a></div>
         </div>
     </div>
 
@@ -34,6 +35,8 @@
                 <img src="./site/public/assest/icons/search.png" alt="" width="30px">
             </button>
         </form>
+        <?php require './site/layout/header.php'; ?>
+
         <div class="table-header-container">
             <div class="tbl-header">
                 <table cellpadding="0" cellspacing="0">
@@ -69,23 +72,19 @@
                             <td><?= $order->ThoiGianBD ?></td>
                             <td><?= $order->TrangThai ?></td>
                             <td> <?= $order->SoLuong ?></td>
-                            <td><?= $order->ThanhTien ?></td>
+                            <td><?= number_format($order->ThanhTien) ?>₫</td>
                             <td><?= $order->GhiChu ?></td>
-
-                            <?php if ($order->TrangThai == 'DAKHOITAO') : ?>
                             <td>
                                 <div class="button-container">
-                                    <div class="button-options">
-                                        <a href="/?c=order&a=destroy&MaDH=<?= $order->MaDH ?>">
-                                            <img src="../../admin/public/assest/icons/trash-bin.png" alt="" />
+                                    <div class="button-options cancel">
+                                        <a href="/?c=order&a=destroy&MaDH= <?= $order->MaDH ?>">
+                                            Hủy
                                         </a>
                                     </div>
                                 </div>
                             </td>
-                            <?php endif; ?>
-                            <?php endif; ?>
-
                         </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
