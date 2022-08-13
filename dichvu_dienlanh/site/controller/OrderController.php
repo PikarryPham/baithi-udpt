@@ -135,7 +135,7 @@ class OrderController
                 }
             } else {
                 $_SESSION['error'] = 'Bạn không thể hủy đơn hàng trong quá trình thực hiện';
-                header('location:/?c=order&a=edit');
+                header("location:/?c=order&a=edit&MaDH=$order->MaDH");
                 // return false;
             }
 
